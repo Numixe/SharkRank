@@ -9,40 +9,6 @@ public class Commands {
 	
 	public static void rankUp(Player player) {
 		
-    	int kills = Integer.parseInt(plugin.getConfig().getString("Players." + player.getName() + ".kills"));
-    	
-    	String group = null;
-    	
-    	if (kills == plugin.RANK_A_PTK) {
-    		
-    		group = plugin.RANK_A_GROUP;
-    	
-    	} else if (kills == plugin.RANK_B_PTK) {
-    		
-    		group = plugin.RANK_B_GROUP;
-    		
-    	} else if (kills == plugin.RANK_C_PTK) {
-    		
-    		group = plugin.RANK_C_GROUP;
-    		
-    	} else if (kills >= plugin.RANK_D_PTK && kills < plugin.RANK_E_PTK) {
-    		
-    		group = plugin.RANK_D_GROUP;
-    		
-    	} else if (kills == plugin.RANK_E_PTK) {
-    		
-    		group = plugin.RANK_E_GROUP;
-    	}
-    	
-    	if (group == null)
-    		return;			// don't dispatch any command
-    	
-    	plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "pex user " + 
-	    	    player.getName() + " group set " + group);
-    }
-	
-	public static void rankUpdate(Player player) {
-		
 		int kills = Integer.parseInt(plugin.getConfig().getString("Players." + player.getName() + ".kills"));
     	
     	String group = null;
