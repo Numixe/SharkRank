@@ -5,46 +5,42 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import static it.sharkcraft.sharkrank.SharkRank.*; // import global variable plugin
 
-public class KillsListener
-  implements Listener
-{
-  public SharkRank plugin;
-  
-  public KillsListener(SharkRank plugin)
-  {
-    this.plugin = plugin;
-  }
+public class KillsListener implements Listener {
   
   @EventHandler
-  public void onDeath(PlayerDeathEvent event)
-  {
-    Player killer = event.getEntity().getKiller();
-    if (!(killer instanceof Player)) {
-      return;
-    }
+  public void onDeath(PlayerDeathEvent event) {
     
-    int kills = this.plugin.getConfig().getInt("Players." + killer.getName() + ".kills");
-    if (this.plugin.getConfig().contains("Players." + killer.getName() + ".kills")) {
-      this.plugin.getConfig().set("Players." + killer.getName() + ".kills", Integer.valueOf(kills + 1));
-      Commands.rankUp(killer);
-      
+    Player killer = event.getEntity().getKiller();
+	
+	if (!(killer instanceof Player)) {
+		
+		return;	// does nothing
+	}
+	
+	if (plugin.getConfig().contains("Players." + killer.getName() + ".kills")) {
+		
+		int kills = plugin.getConfig().getInt("Players." + killer.getName() + ".kills");
+        plugin.getConfig().set("Players" + "." + killer.getName() + ".kills", kills + 1);
+        Commands.rankUp(killer);
+        
     } else {
     	
-      this.plugin.getConfig().createSection("Players." + killer.getName() + ".kills");
-      plugin.getConfig().set("Players." + killer.getName() + ".kills", 1);
-      
+        plugin.getConfig().createSection("Players" + "." + killer.getName() + ".kills");
+        plugin.getConfig().set("Players." + killer.getName() + ".kills", 1);
     }
   }
   
   @EventHandler
-  public void onJoin(PlayerJoinEvent event)
-  {
-    Player p = event.getPlayer();
-    if (((p instanceof Player)) && 
-      (!this.plugin.getConfig().contains("Players." + p.getName() + ".kills"))) {
-      this.plugin.getConfig().createSection("Players." + p.getName() + ".kills");
-      this.plugin.getConfig().set("Players." + p.getName() + ".kills", Integer.valueOf(0));
-    }
+  public void onJoin(PlayerJoinEvent event) {
+	  
+	  Player p = event.getPlayer();
+	  
+	  if (((p instanceof Player)) && (!plugin.getConfig().contains("Players." + p.getName() + ".kills"))) {
+		  
+		  plugin.getConfig().createSection("Players." + p.getName() + ".kills");
+		  plugin.getConfig().set("Players." + p.getName() + ".kills", Integer.valueOf(0));
+	  }
   }
 }
