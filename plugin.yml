@@ -7,5 +7,3 @@ commands:
           description: View Kill
         shreload:
           description: Reload Config
-        shupdate:
-          description: Update Rank
