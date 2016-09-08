@@ -1,0 +1,11 @@
+name: SharkRank
+version: 0.32.8
+Author: Numixe & GiantRaven
+main: it.sharkcraft.sharkrank.SharkRank
+commands:
+        shrank:
+          description: View Kill
+        shreload:
+          description: Reload Config
+        shupdate:
+          description: Update Rank
