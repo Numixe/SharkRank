@@ -5,5 +5,7 @@ main: it.sharkcraft.sharkrank.SharkRank
 commands:
         shrank:
           description: View Kill
+        kill:
+          description: Alias of /shrank .
         shreload:
           description: Reload Config
