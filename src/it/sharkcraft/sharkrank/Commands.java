@@ -45,22 +45,23 @@ public class Commands {
 		Player p = (Player) sender;
 		if (args.length == 0) {
             if(plugin.getConfig().contains("Players" + "." + p.getName() + ".kills")){  
-            	p.sendMessage("ï¿½8[ï¿½cï¿½l!ï¿½8] ï¿½9SharkRank> " + "ï¿½a" + p.getName() 
-            	+ " ï¿½7ha ï¿½a" + plugin.getConfig().getString("Players" + "." + p.getName() + ".kills") 
-            	+ " ï¿½7kills.");
+            	p.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("MSG_YOUR_KILLS")
+            			.replace("&", "§").replace("%playername%", p.getName())
+            			.replace("%mykills%", plugin.getConfig().getString("Players" + "." + p.getName() + ".kills")));
  
         } else {
         	plugin.getConfig().createSection("Players" + "." + p.getName());
         	plugin.getConfig().set("Players" + "." + p.getName() + ".kills", 0);
             }
+            
         	} else if (args.length == 1) {
         		if(plugin.getConfig().contains("Players" + "." + args[0] + ".kills")) {
-        			p.sendMessage("ï¿½8[ï¿½cï¿½l!ï¿½8] ï¿½9SharkRank> " + "ï¿½a" + args[0] 
-                	+ " ï¿½7ha ï¿½a" + plugin.getConfig().getString("Players" + "." + args[0] + ".kills") 
-                	+ " ï¿½7kills.");
+        			p.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("MSG_OTHER_KILLS")
+        			.replace("&", "§").replace("%othername%", args[0])
+        	        .replace("%otherkills%", plugin.getConfig().getString("Players" + "." + args[0] + ".kills")));
         		} else {
-        			p.sendMessage("ï¿½8[ï¿½cï¿½l!ï¿½8] ï¿½9SharkRank> " + "ï¿½a" + args[0] 
-                	+ " ï¿½7non risulta sui nostri registri!");
+        			p.sendMessage("§8[§c§l!§8] §9SharkRank> "  + plugin.getConfig().getString("MSG_NO_KILLS")
+        			.replace("&", "§").replace("%othername%", args[0]));
         		}
         	}
 	}
@@ -69,7 +70,8 @@ public class Commands {
 		
 		plugin.saveConfig();
     	plugin.reloadConfig();
-    	sender.sendMessage("ï¿½8[ï¿½cï¿½l!ï¿½8] ï¿½9SharkRank> " + " ï¿½7Reload Complete.");
+    	sender.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("MSG_OTHER_KILLS")			
+    	.replace("&", "§"));
 	}
 	
 }

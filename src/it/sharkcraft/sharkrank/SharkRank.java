@@ -48,12 +48,13 @@ public class SharkRank extends JavaPlugin  {
   	    + ChatColor.GRAY + "] " + "SharkRank Disabled");
         saveConfig();
     }
- 
+	
+	@Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
     	
         Player p = (Player) sender;
         
-        if (cmd.getName().equalsIgnoreCase("shrank")){
+        if ((cmd.getName().equalsIgnoreCase("shrank") || (cmd.getName().equalsIgnoreCase("kill")))){
         	
         	Commands.shrank(p, args);
         	
@@ -61,9 +62,6 @@ public class SharkRank extends JavaPlugin  {
         	
         	Commands.shreload(p);
         	
-        } else if (cmd.getName().equalsIgnoreCase("shupdate")){
-        	
-        	Commands.rankUp(p);
         }
         
         return false; 

@@ -1,3 +1,9 @@
+# Message
+MSG_YOUR_KILLS: '&a%playername% &7ha &a%mykills% &7uccisioni.'
+MSG_OTHER_KILLS: '&a%othername% &7ha &a%otherkills% &7uccisioni.'
+MSG_NO_KILLS: '&a%othername% &7 non risulta sui nostri registri.
+MSG_RELOAD: '&7Reload Completato.'
+
 Rank:
   A:
     Player_To_Kill: 10
