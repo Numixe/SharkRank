@@ -45,7 +45,7 @@ public class Commands {
 		Player p = (Player) sender;
 		if (args.length == 0) {
             if(plugin.getConfig().contains("Players" + "." + p.getName() + ".kills")){  
-            	p.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("MSG_YOUR_KILLS")
+            	p.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("Message." + "MSG_YOUR_KILLS")
             			.replace("&", "§").replace("%playername%", p.getName())
             			.replace("%mykills%", plugin.getConfig().getString("Players" + "." + p.getName() + ".kills")));
  
@@ -56,11 +56,11 @@ public class Commands {
             
         	} else if (args.length == 1) {
         		if(plugin.getConfig().contains("Players" + "." + args[0] + ".kills")) {
-        			p.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("MSG_OTHER_KILLS")
+        			p.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("Message." +  "MSG_OTHER_KILLS")
         			.replace("&", "§").replace("%othername%", args[0])
         	        .replace("%otherkills%", plugin.getConfig().getString("Players" + "." + args[0] + ".kills")));
         		} else {
-        			p.sendMessage("§8[§c§l!§8] §9SharkRank> "  + plugin.getConfig().getString("MSG_NO_KILLS")
+        			p.sendMessage("§8[§c§l!§8] §9SharkRank> "  + plugin.getConfig().getString("Message." +  "MSG_NO_KILLS")
         			.replace("&", "§").replace("%othername%", args[0]));
         		}
         	}
@@ -70,7 +70,7 @@ public class Commands {
 		
 		plugin.saveConfig();
     	plugin.reloadConfig();
-    	sender.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("MSG_OTHER_KILLS")			
+    	sender.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("Message." +  "MSG_OTHER_KILLS")			
     	.replace("&", "§"));
 	}
 	
