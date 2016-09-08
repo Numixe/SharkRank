@@ -48,8 +48,13 @@ Temporary Items
 *.class
 
 /bin/
+.classpath
 spigot-1.8.8-R0.1-SNAPSHOT-latest.jar
 spigot-1.8.8.jar
 *.class
+<<<<<<< HEAD
 
 /bin/
+=======
+*.classpath
+>>>>>>> 100af606aa338df4e51a6eab23ca34ce8ca12edb
