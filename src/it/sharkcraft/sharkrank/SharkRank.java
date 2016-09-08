@@ -59,9 +59,9 @@ public class SharkRank extends JavaPlugin  {
         	Commands.shrank(p, args);
         	
         } else if (cmd.getName().equalsIgnoreCase("shreload")){
-        	
+        	if (p.hasPermission("SharkRank.Reload")) {
         	Commands.shreload(p);
-        	
+        	}
         }
         
         return false; 

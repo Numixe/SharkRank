@@ -67,7 +67,7 @@ public class Commands {
 	}
 	
 	public static void shreload(Player sender) {
-		
+		plugin.saveConfig();
     	plugin.reloadConfig();
     	sender.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("Message." +  "MSG_RELOAD")			
     	.replace("&", "§"));

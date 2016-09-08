@@ -23,6 +23,7 @@ public class Update implements Runnable {
 		
 		// rankUp() va richiamata solo in caso di uccisione, e non ricorsivamente
 		
+		plugin.saveConfig();
 		plugin.reloadConfig();
 	}
 
