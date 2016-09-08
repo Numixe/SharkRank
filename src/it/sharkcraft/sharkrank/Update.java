@@ -1,8 +1,6 @@
 package it.sharkcraft.sharkrank;
 
-import java.util.Collection;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 public class Update implements Runnable
 {
@@ -12,15 +10,15 @@ public class Update implements Runnable
   public Update(SharkRank plugin)
   {
     this.plugin = plugin;
-    Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this, SEC, 10 * SEC);
+    Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this, SEC, 30 * SEC);
   }
   
   public void run()
   {
-    Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
+    /**Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
     for (Player player : players) {
-      Commands.rankUp(player);
-    }
+
+    }**/
     this.plugin.saveConfig();
     this.plugin.reloadConfig();
   }

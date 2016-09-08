@@ -27,6 +27,7 @@ public class KillsListener
     int kills = this.plugin.getConfig().getInt("Players." + killer.getName() + ".kills");
     if (this.plugin.getConfig().contains("Players." + killer.getName() + ".kills")) {
       this.plugin.getConfig().set("Players." + killer.getName() + ".kills", Integer.valueOf(kills + 1));
+      Commands.rankUp(killer);
       
     } else {
     	
