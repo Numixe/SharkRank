@@ -10,10 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SharkRank extends JavaPlugin  {
 	
 	public static SharkRank plugin;
-
-	String[] args;
-	
-	public final Boolean VIP = getConfig().getBoolean("Players." + args[1] + ".vip", false);
 	
 	public final int RANK_A_PTK = Integer.parseInt(getConfig().getString("Rank.A.Player_To_Kill"));
 	public final String RANK_A_GROUP = getConfig().getString("Rank.A.Pex_Group");
@@ -69,14 +65,19 @@ public class SharkRank extends JavaPlugin  {
         	}
         	
         } else if (args.length == 1) {
+        	
         	if (args[0].equalsIgnoreCase("setvip")) {
-        		if (getConfig().getBoolean("Players." + args[1] + ".vip", false)) {
-        		getConfig().set("Players." + args[1] + ".vip", true);
-        		p.sendMessage("§9SharkRank> §a" + args[1] + " §7è ora un VIP!");
-        	} else if (getConfig().getBoolean("Players." + args[1] + ".vip", true)) {
-        		getConfig().set("Players." + args[1] + ".vip", false);
-        		p.sendMessage("§9SharkRank> §a" + args[1] + " §7non è piu un VIP!");
-        	}
+        		
+        		if (!getConfig().getBoolean("Players." + args[1] + ".vip")) { // se false, (ti ricordo che (!false) == true)
+        			
+        			getConfig().set("Players." + args[1] + ".vip", true);
+        			p.sendMessage("ï¿½9SharkRank> ï¿½a" + args[1] + " ï¿½7ï¿½ ora un VIP!");
+        			
+        		} else {	// se true, con i boolean non c'e bisogno di verificare due volte
+        		
+        			getConfig().set("Players." + args[1] + ".vip", false);
+        			p.sendMessage("ï¿½9SharkRank> ï¿½a" + args[1] + " ï¿½7non ï¿½ piu un VIP!");
+        		}
         	}
         }
         }
