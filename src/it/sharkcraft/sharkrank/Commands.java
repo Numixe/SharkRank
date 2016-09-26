@@ -12,7 +12,7 @@ public class Commands {
 		int kills = Integer.parseInt(plugin.getConfig().getString("Players." + player.getName() + ".kills"));
     	
     	String group = null;
-    	
+    if (plugin.getConfig().getBoolean("Players." + plugin.args[1] + ".vip", false)) {
     	if (kills >= plugin.RANK_A_PTK && kills < plugin.RANK_B_PTK) {
     		
     		group = plugin.RANK_A_GROUP;
@@ -39,8 +39,10 @@ public class Commands {
     	
     	plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "pex user " + 
 	    	    player.getName() + " group set " + group);
+	 } else {
+		 return;
+	 }
 	}
-	
 	public static void shrank(Player sender, String[] args) {
 		Player p = (Player) sender;
 		if (args.length == 0) {

@@ -42,5 +42,11 @@ public class KillsListener implements Listener {
 		  plugin.getConfig().createSection("Players." + p.getName() + ".kills");
 		  plugin.getConfig().set("Players." + p.getName() + ".kills", Integer.valueOf(0));
 	  }
+	  
+	  if (((p instanceof Player)) && (!plugin.getConfig().contains("Players." + p.getName() + ".vip"))) {
+		  
+		  plugin.getConfig().createSection("Players." + p.getName() + ".vip");
+		  plugin.getConfig().set("Players." + p.getName() + ".vip", false);
+	  }
   }
 }

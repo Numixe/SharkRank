@@ -1,5 +1,5 @@
 package it.sharkcraft.sharkrank;
- 
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,6 +10,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SharkRank extends JavaPlugin  {
 	
 	public static SharkRank plugin;
+
+	String[] args;
+	
+	public final Boolean VIP = getConfig().getBoolean("Players." + args[1] + ".vip", false);
 	
 	public final int RANK_A_PTK = Integer.parseInt(getConfig().getString("Rank.A.Player_To_Kill"));
 	public final String RANK_A_GROUP = getConfig().getString("Rank.A.Pex_Group");
@@ -54,6 +58,7 @@ public class SharkRank extends JavaPlugin  {
     	
         Player p = (Player) sender;
         
+        if (args.length == 0) {
         if ((cmd.getName().equalsIgnoreCase("shrank") || (cmd.getName().equalsIgnoreCase("kill")))){
         	
         	Commands.shrank(p, args);
@@ -62,8 +67,19 @@ public class SharkRank extends JavaPlugin  {
         	if (p.hasPermission("SharkRank.Reload")) {
         	Commands.shreload(p);
         	}
+        	
+        } else if (args.length == 1) {
+        	if (args[0].equalsIgnoreCase("setvip")) {
+        		if (getConfig().getBoolean("Players." + args[1] + ".vip", false)) {
+        		getConfig().set("Players." + args[1] + ".vip", true);
+        		p.sendMessage("§9SharkRank> §a" + args[1] + " §7è ora un VIP!");
+        	} else if (getConfig().getBoolean("Players." + args[1] + ".vip", true)) {
+        		getConfig().set("Players." + args[1] + ".vip", false);
+        		p.sendMessage("§9SharkRank> §a" + args[1] + " §7non è piu un VIP!");
+        	}
+        	}
         }
-        
+        }
         return false; 
     }
 
