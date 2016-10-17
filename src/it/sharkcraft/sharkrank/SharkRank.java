@@ -54,11 +54,11 @@ public class SharkRank extends JavaPlugin  {
     	
         Player p = (Player) sender;
         
-        if ((cmd.getName().equalsIgnoreCase("shrank") || (cmd.getName().equalsIgnoreCase("kill")))){
+        if ((cmd.getName().equalsIgnoreCase("shrank") || (cmd.getName().equalsIgnoreCase("kill")))) {
         	
         	Commands.shrank(p, args);
         	
-        } else if (cmd.getName().equalsIgnoreCase("shreload")){
+        } else if (cmd.getName().equalsIgnoreCase("shreload")) {
         	if (p.hasPermission("SharkRank.Reload")) {
         		
         	Commands.shreload(p);

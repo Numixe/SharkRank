@@ -13,10 +13,9 @@ public class Commands {
 		
 		int kills = Integer.parseInt(plugin.getConfig().getString("Players." + player.getName() + ".kills"));
     	
+    	if (player.hasPermission("SharkRank.Disable")) {
+    	    		
     	String group = null;
-    	
-    	if (plugin.getConfig().getBoolean("Players." + player.getName() + ".vip"))	// se vip, non fare nulla
-    		return;
     	
     	if (kills >= plugin.RANK_A_PTK && kills < plugin.RANK_B_PTK) {
     		
@@ -44,6 +43,7 @@ public class Commands {
     	
     	plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "pex user " + 
 	    	    player.getName() + " group set " + group);
+    	}
 	}
 	
 	public static void shrank(Player sender, String[] args) {
