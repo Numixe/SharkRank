@@ -54,37 +54,24 @@ public class SharkRank extends JavaPlugin  {
     	
         Player p = (Player) sender;
         
-        if (args.length == 0) {
         if ((cmd.getName().equalsIgnoreCase("shrank") || (cmd.getName().equalsIgnoreCase("kill")))){
         	
         	Commands.shrank(p, args);
         	
         } else if (cmd.getName().equalsIgnoreCase("shreload")){
         	if (p.hasPermission("SharkRank.Reload")) {
+        		
         	Commands.shreload(p);
+        	
         	}
         	
-        } else if (args.length == 1) {
-        	
-        	if (args[0].equalsIgnoreCase("setvip")) {
-        		
-        		if (!getConfig().getBoolean("Players." + args[1] + ".vip")) { // se false, (ti ricordo che (!false) == true)
-        			
-        			getConfig().set("Players." + args[1] + ".vip", true);
-        			p.sendMessage("ï¿½9SharkRank> ï¿½a" + args[1] + " ï¿½7ï¿½ ora un VIP!");
-        			
-        		} else {	// se true, con i boolean non c'e bisogno di verificare due volte
-        		
-        			getConfig().set("Players." + args[1] + ".vip", false);
-        			p.sendMessage("ï¿½9SharkRank> ï¿½a" + args[1] + " ï¿½7non ï¿½ piu un VIP!");
-        		}
-        	}
-        }
-        }
-        return false; 
+      } else if ((cmd.getName().equalsIgnoreCase("shset")) || (cmd.getName().equalsIgnoreCase("killset"))) {
+      if (p.hasPermission("SharkRank.set")) {
+        Commands.killset(p, args);
+      } else {
+        p.sendMessage("§8[§c§l!§8] §9SharkRank> §cNon hai il permesso di usare questo comando!");
+      }
     }
-
- 
+    return false;
+  }
 }
-
- 

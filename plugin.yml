@@ -1,5 +1,5 @@
 name: SharkRank
-version: 1.0
+version: 2.0
 Author: Numixe & GiantRaven
 main: it.sharkcraft.sharkrank.SharkRank
 commands:
@@ -9,3 +9,5 @@ commands:
           description: Alias of /shrank .
         shreload:
           description: Reload Config
+        killset:
+          description: Set New Kill

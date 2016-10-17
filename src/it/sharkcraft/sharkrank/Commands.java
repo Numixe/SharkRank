@@ -1,7 +1,9 @@
 package it.sharkcraft.sharkrank;
 
+// import global variable plugin
+import static it.sharkcraft.sharkrank.SharkRank.plugin;
+
 import org.bukkit.entity.Player;
-import static it.sharkcraft.sharkrank.SharkRank.*; // import global variable plugin
 
 public class Commands {
 	
@@ -48,8 +50,8 @@ public class Commands {
 		Player p = (Player) sender;
 		if (args.length == 0) {
             if(plugin.getConfig().contains("Players" + "." + p.getName() + ".kills")){  
-            	p.sendMessage("ï¿½8[ï¿½cï¿½l!ï¿½8] ï¿½9SharkRank> " + plugin.getConfig().getString("Message." + "MSG_YOUR_KILLS")
-            			.replace("&", "ï¿½").replace("%playername%", p.getName())
+            	p.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("Message." + "MSG_YOUR_KILLS")
+            			.replace("&", "§").replace("%playername%", p.getName())
             			.replace("%mykills%", plugin.getConfig().getString("Players" + "." + p.getName() + ".kills")));
  
         } else {
@@ -59,12 +61,12 @@ public class Commands {
             
         	} else if (args.length == 1) {
         		if(plugin.getConfig().contains("Players" + "." + args[0] + ".kills")) {
-        			p.sendMessage("ï¿½8[ï¿½cï¿½l!ï¿½8] ï¿½9SharkRank> " + plugin.getConfig().getString("Message." +  "MSG_OTHER_KILLS")
-        			.replace("&", "ï¿½").replace("%othername%", args[0])
+        			p.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("Message." +  "MSG_OTHER_KILLS")
+        			.replace("&", "§").replace("%othername%", args[0])
         	        .replace("%otherkills%", plugin.getConfig().getString("Players" + "." + args[0] + ".kills")));
         		} else {
-        			p.sendMessage("ï¿½8[ï¿½cï¿½l!ï¿½8] ï¿½9SharkRank> "  + plugin.getConfig().getString("Message." +  "MSG_NO_KILLS")
-        			.replace("&", "ï¿½").replace("%othername%", args[0]));
+        			p.sendMessage("§8[§c§l!§8] §9SharkRank> "  + plugin.getConfig().getString("Message." +  "MSG_NO_KILLS")
+        			.replace("&", "§").replace("%othername%", args[0]));
         		}
         	}
 	}
@@ -72,8 +74,22 @@ public class Commands {
 	public static void shreload(Player sender) {
 		plugin.saveConfig();
     	plugin.reloadConfig();
-    	sender.sendMessage("ï¿½8[ï¿½cï¿½l!ï¿½8] ï¿½9SharkRank> " + plugin.getConfig().getString("Message." +  "MSG_RELOAD")			
-    	.replace("&", "ï¿½"));
+    	sender.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("Message." +  "MSG_RELOAD")			
+    	.replace("&", "§"));
 	}
-	
+  
+	public static void killset(Player sender, String[] args) {
+    Player p = sender;
+    if (args.length == 0) {
+      p.sendMessage("§8[§c§l!§8] §9SharkRank> §7Usa: §a/killset <nome> <kill>");
+    }
+    else if (args.length == 1) {
+      p.sendMessage("§8[§c§l!§8] §9SharkRank> §7Usa: §a/killset <nome> <kill>");
+    }
+    else if (args.length == 2)
+    {
+      SharkRank.plugin.getConfig().set("Players." + args[0] + ".kills", Integer.valueOf(args[1]));
+      p.sendMessage("§8[§c§l!§8] §9SharkRank> §7Kill di §c" + args[0] + " §7impostate a §a" + args[1]);
+    }
+  }
 }
