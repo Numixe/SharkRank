@@ -9,7 +9,7 @@ public class Update implements Runnable {
 	
 	public Update() {
 		
-		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this, SEC, 30 * SEC);
+		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this, SEC, 15 * SEC);
 	}
 
 	public void run() {

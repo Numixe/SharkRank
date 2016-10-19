@@ -1,7 +1,6 @@
 package it.sharkcraft.sharkrank;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -10,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SharkRank extends JavaPlugin  {
 	
 	public static SharkRank plugin;
+	public static KillBoard killboard;
 	
 	public final int RANK_A_PTK = Integer.parseInt(getConfig().getString("Rank.A.Player_To_Kill"));
 	public final String RANK_A_GROUP = getConfig().getString("Rank.A.Pex_Group");
@@ -35,17 +35,17 @@ public class SharkRank extends JavaPlugin  {
     	Update up = new Update();
 
     	Bukkit.getServer().getConsoleSender()
-    	.sendMessage(ChatColor.GRAY + "[" + ChatColor.GREEN + ChatColor.BOLD + "!" 
-    	+ ChatColor.GRAY + "] " + ChatColor.GRAY + "SharkRank Enabled");
+    	.sendMessage("SharkRank Enabled");
         getConfig().options().copyDefaults(true);
         saveConfig();
         Bukkit.getServer().getPluginManager().registerEvents(new KillsListener(), this);
+        // Carica KillBoard
+        killboard = new KillBoard();
     }
     
 	public void onDisable(){
     	Bukkit.getServer().getConsoleSender()
-  	    .sendMessage(ChatColor.GRAY + "[" + ChatColor.RED + ChatColor.BOLD + "!" 
-  	    + ChatColor.GRAY + "] " + "SharkRank Disabled");
+  	    .sendMessage("SharkRank Disabled");
         saveConfig();
     }
 	
@@ -62,7 +62,7 @@ public class SharkRank extends JavaPlugin  {
         	if (p.hasPermission("SharkRank.Reload")) {
         		
         	Commands.shreload(p);
-        	
+        	killboard.refresh();
         	}
         	
       } else if ((cmd.getName().equalsIgnoreCase("shset")) || (cmd.getName().equalsIgnoreCase("killset"))) {

@@ -20,3 +20,7 @@ Message:
   MSG_OTHER_KILLS: '&a%othername% &7ha &a%otherkills% &7uccisioni.'
   MSG_NO_KILLS: '&a%othername% &7 non risulta sui nostri registri.'
   MSG_RELOAD: '&7Reload Completato.'
+
+KillBoard:
+  Title: '&c&lTop Uccisioni'
+  PlayerColor: '&7'

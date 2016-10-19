@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+
 import static it.sharkcraft.sharkrank.SharkRank.*; // import global variable plugin
 
 public class KillsListener implements Listener {
@@ -22,8 +23,10 @@ public class KillsListener implements Listener {
 	if (plugin.getConfig().contains("Players." + killer.getName() + ".kills")) {
 		
 		int kills = plugin.getConfig().getInt("Players." + killer.getName() + ".kills");
+		killboard.set(killer.getName(), kills + 1);
         plugin.getConfig().set("Players" + "." + killer.getName() + ".kills", kills + 1);
         Commands.rankUp(killer);
+        
         
     } else {
     	
@@ -43,10 +46,7 @@ public class KillsListener implements Listener {
 		  plugin.getConfig().set("Players." + p.getName() + ".kills", Integer.valueOf(0));
 	  }
 	  
-	  if (((p instanceof Player)) && (!plugin.getConfig().contains("Players." + p.getName() + ".vip"))) {
-		  
-		  plugin.getConfig().createSection("Players." + p.getName() + ".vip");
-		  plugin.getConfig().set("Players." + p.getName() + ".vip", false);
-	  }
+	  p.setScoreboard(killboard.getKillBoard()); // Assegna al player la grafica delle kills.
+
   }
 }

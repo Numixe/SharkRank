@@ -1,7 +1,7 @@
 package it.sharkcraft.sharkrank;
 
 // import global variable plugin
-import static it.sharkcraft.sharkrank.SharkRank.plugin;
+import static it.sharkcraft.sharkrank.SharkRank.*;
 
 import org.bukkit.entity.Player;
 
@@ -14,13 +14,13 @@ public class Commands {
 		int kills = Integer.parseInt(plugin.getConfig().getString("Players." + player.getName() + ".kills"));
     	
     	if (player.hasPermission("SharkRank.Disable")) {
-    	    		
+
     	String group = null;
     	
     	if (kills >= plugin.RANK_A_PTK && kills < plugin.RANK_B_PTK) {
     		
     		group = plugin.RANK_A_GROUP;
-    	
+    		
     	} else if (kills >= plugin.RANK_B_PTK && kills < plugin.RANK_C_PTK) {
     		
     		group = plugin.RANK_B_GROUP;
@@ -44,6 +44,8 @@ public class Commands {
     	plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "pex user " + 
 	    	    player.getName() + " group set " + group);
     	}
+    	killboard.refresh();
+    	
 	}
 	
 	public static void shrank(Player sender, String[] args) {
@@ -70,14 +72,14 @@ public class Commands {
         		}
         	}
 	}
-	
+
 	public static void shreload(Player sender) {
 		plugin.saveConfig();
     	plugin.reloadConfig();
     	sender.sendMessage("§8[§c§l!§8] §9SharkRank> " + plugin.getConfig().getString("Message." +  "MSG_RELOAD")			
     	.replace("&", "§"));
 	}
-  
+
 	public static void killset(Player sender, String[] args) {
     Player p = sender;
     if (args.length == 0) {
@@ -88,7 +90,22 @@ public class Commands {
     }
     else if (args.length == 2)
     {
-      SharkRank.plugin.getConfig().set("Players." + args[0] + ".kills", Integer.valueOf(args[1]));
+    	
+    	int value;
+    	
+    	try {
+    		
+    		value = Integer.valueOf(args[1]);
+    		
+    	} catch (NumberFormatException e) {
+    		
+    		p.sendMessage("§8[§c§l!§8] §9SharkRank> §7Usa: §a/killset <nome> <kill>");
+    		p.sendMessage("§8[§c§l!§8] §9SharkRank> §cIl numero indicato non e' un numero intero!");
+    		return;
+    	}
+    	
+      plugin.getConfig().set("Players." + args[0] + ".kills", value);
+      killboard.set(args[0], value);
       p.sendMessage("§8[§c§l!§8] §9SharkRank> §7Kill di §c" + args[0] + " §7impostate a §a" + args[1]);
     }
   }
